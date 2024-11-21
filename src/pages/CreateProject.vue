@@ -13,8 +13,8 @@ const project = ref({
   id: '',
   name: '',
   client: '',
-  startDate: null,
-  endDate: null,
+  startDate: new Date(),
+  endDate: new Date(),
   image: './project-cover.png',
   isFavorite: false
 });

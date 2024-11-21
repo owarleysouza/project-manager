@@ -52,14 +52,18 @@ const combinedFilteredProjects = computed(() => {
       projects = projects.sort((a, b) => a.name.localeCompare(b.name));
       break;
     case 'recentlyStarted':
-      projects = projects.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+      projects = projects.sort(
+        (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+      );
       break;
     case 'endingSoon':
       projects = projects
-        .filter((p) => p.endDate)
-        .sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+        .filter((p) => p.endDate)  
+        .sort(
+          (a, b) => new Date(a.endDate).getTime() - new Date(b.endDate).getTime()
+        );
       break;
-  }
+}
 
   return projects;
 });
