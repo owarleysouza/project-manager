@@ -7,7 +7,7 @@ const routes = [
     component: () => import('../pages/Home.vue'),
   },
   {
-    path: '/edit-project',
+    path: '/edit-project/:id',
     name: 'EditProject',
     component: () => import('../pages/EditProject.vue'),
   },

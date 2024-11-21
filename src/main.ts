@@ -10,11 +10,19 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+import { VDateInput } from 'vuetify/labs/VDateInput'
+
 
 const app = createApp(App);
 
 const vuetify = createVuetify({
-  components,
+  components: {
+    VDateInput,
+    ...components
+  },
+  locale: {
+    locale: 'pt-BR',
+  },
   directives,
   icons: {
     defaultSet: 'mdi',
@@ -30,7 +38,8 @@ const vuetify = createVuetify({
           accent: "#695CCD",
           textGray: "#717171",
           favorite: "#FFB23D",
-          textBlack: "#1C1930"
+          textBlack: "#1C1930",
+          appBar: "#1C1930",
         },
       },
     },
