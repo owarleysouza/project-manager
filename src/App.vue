@@ -23,7 +23,7 @@ const toggleSearch = () => {
           <v-img
             :width="180"
             :height="65"
-            src="../../public/logo.svg"
+            src="./logo.svg"
           ></v-img>
         </template>
         <template v-else>
