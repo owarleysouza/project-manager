@@ -15,7 +15,7 @@ const project = ref({
   client: '',
   startDate: new Date(),
   endDate: new Date(),
-  image: '../../public/project-cover.png',
+  image: '/project-cover.png',
   isFavorite: false
 });
  
