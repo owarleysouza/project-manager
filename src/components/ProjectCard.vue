@@ -39,6 +39,8 @@ const deleteProject = (projectId: string) => {
     }
   }
 };
+
+ 
  
 </script>
 
@@ -49,7 +51,7 @@ const deleteProject = (projectId: string) => {
         <v-img
           color="surface-variant"
           height="200"
-          src="./project-cover.png"
+          :src="project.image || './project-cover.png'"
           cover
         >
           <div class="fill-height d-flex justify-end align-end ga-4 pa-3">

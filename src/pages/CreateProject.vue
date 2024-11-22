@@ -15,11 +15,22 @@ const project = ref({
   client: '',
   startDate: new Date(),
   endDate: new Date(),
-  image: './project-cover.png',
+  image: '../../public/project-cover.png',
   isFavorite: false
 });
  
 const isFormValid = ref(false);
+
+const handleImageUpload = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      project.value.image = reader.result as string; 
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
 const endAfterStart = (value: Date) => {
   if (!value || !project.value.startDate) return true
@@ -107,6 +118,16 @@ const submitForm = () => {
             variant="solo"
             rounded
           /> 
+
+          <v-file-input
+            label="Capa do Projeto (Opcional)"
+            @change="handleImageUpload"
+            accept="image/*"
+            variant="solo"
+            rounded
+            prepend-icon=""
+            append-inner-icon="$file"
+          />
           
           <v-btn
             :disabled="!isFormValid"

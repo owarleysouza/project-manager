@@ -17,6 +17,24 @@ const project = ref({
   isFavorite: false
 });
 
+const isEditingImage = ref(false); 
+
+const handleImageUpload = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      project.value.image = reader.result as string;  
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const removeImage = () => {
+  project.value.image = '';  
+  isEditingImage.value = true;  
+};
+
 const isFormValid = ref(false);
  
 const endAfterStart = (value: Date) => {
@@ -118,6 +136,38 @@ onMounted(() => {
             variant="solo"
             rounded
           />
+ 
+        <div v-if="!isEditingImage" class="d-flex flex-row justify-center position-relative">
+          
+          <img
+            :src="project.image"
+            alt="Imagem do projeto"
+            class="rounded"
+            style="max-width: 300px; max-height: 300px;"
+          />
+          <v-icon
+            class="position-absolute top-0 bg-white rounded-xl mt-2 pa-2"
+            color="accent"
+            size="25"
+            @click="removeImage"
+            >
+              mdi-delete
+            </v-icon>
+        </div>
+
+        <div v-else>
+          <v-file-input
+            accept="image/*"
+            label="Capa do Projeto (Opcional)"
+            outlined
+            dense
+            variant="solo"
+            rounded
+            prepend-icon=""
+            append-inner-icon="$file"
+            @change="handleImageUpload"
+          />
+        </div>
 
           <v-btn
             :disabled="!isFormValid"
